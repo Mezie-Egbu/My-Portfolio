@@ -2,13 +2,13 @@ import EquationPic from "./assets/EquationPic.png";
 import FoodWebPic from "./assets/FoodWebPic.png";
 
 const ProjectInfo = [
-  // {
-  //   title: "Student Assistant Chatbot",
-  //   description:
-  //     "An AI chatbot responsive user interface crafted with react and tailwindcss",
-  //   hrefLink: "https://Mezie-Egbu.github.io/Student-Chatbot",
-  //   image: "ChatBotPic.png",
-  // },
+  {
+    title: "Student Assistant Chatbot",
+    description:
+      "An AI chatbot responsive user interface crafted with react and tailwindcss",
+    hrefLink: "https://mezie-egbu.github.io/class-chatbot/",
+    image: "ChatBotPic.png",
+  },
   {
     title: "Food Ordering Website",
     description:
