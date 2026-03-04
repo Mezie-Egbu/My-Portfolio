@@ -11,33 +11,61 @@ export default function Header() {
     if (open && menuRef.current) {
       gsap.fromTo(
         menuRef.current,
-        { opacity: 1, x: 650 },
-        { opacity: 1, x: 0, duration: 0.5, ease: "easeIn" },
+        { opacity: 1, x: 450 },
+        { opacity: 1, x: 0, duration: 0.45, ease: "power2.out" },
       );
     }
   }, [open]);
 
   return (
-    <nav className="sticky top-0 w-full z-10">
-      <div className="border p-3 flex justify-between sm:justify-around bg-black text-white">
-        <h1 className=" text-2xl font-bold cursor-pointer">MY PORTFOLIO</h1>
-        <ul className="gap-5 font-bold hidden sm:flex">
-          <li className="cursor-pointer">
-            <a href="#About">About</a>
-          </li>
-          <li className="cursor-pointer">
-            <a href="#Projects">Projects</a>
-          </li>
-          <li className="cursor-pointer">
-            <a href="#Contacts">Contacts</a>
-          </li>
-        </ul>
+    <nav className="sticky top-0 z-50 bg-black/70 backdrop-blur-xl border-b border-white/10">
+      <div className="mx-auto max-w-6xl px-4 h-[72px] flex items-center justify-between">
+        {/* left logo */}
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 rounded-full bg-white/10 border border-white/10 grid place-items-center font-bold text-white/80">
+            vm
+          </div>
+        </div>
+
+        {/* center pill menu (desktop) */}
+        <div className="hidden sm:flex items-center rounded-2xl bg-white/5 border border-white/10 px-2 py-2 gap-1">
+          <a
+            href="#About"
+            className="px-4 py-2 rounded-xl text-sm font-semibold text-white/75 hover:text-white hover:bg-white/10 transition"
+          >
+            Home
+          </a>
+          <a
+            href="#Projects"
+            className="px-4 py-2 rounded-xl text-sm font-semibold text-white/75 hover:text-white hover:bg-white/10 transition"
+          >
+            Projects
+          </a>
+          <a
+            href="#Contacts"
+            className="px-4 py-2 rounded-xl text-sm font-semibold text-white/75 hover:text-white hover:bg-white/10 transition"
+          >
+            Contact
+          </a>
+        </div>
+
+        {/* right button */}
+        <div className="hidden sm:block">
+          <a
+            href="#Contacts"
+            className="rounded-2xl bg-white/10 border border-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/15 transition"
+          >
+            Let&apos;s Talk
+          </a>
+        </div>
+
+        {/* mobile menu btn */}
         <div className="sm:hidden">
           {open ? (
             <button
-              onClick={() => {
-                setOpen(false);
-              }}
+              className="h-10 w-10 rounded-xl bg-white/10 border border-white/10 grid place-items-center"
+              onClick={() => setOpen(false)}
+              aria-label="Close menu"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +73,7 @@ export default function Header() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6"
+                className="size-5"
               >
                 <path
                   strokeLinecap="round"
@@ -56,9 +84,9 @@ export default function Header() {
             </button>
           ) : (
             <button
-              onClick={() => {
-                setOpen(true);
-              }}
+              className="h-10 w-10 rounded-xl bg-white/10 border border-white/10 grid place-items-center"
+              onClick={() => setOpen(true)}
+              aria-label="Open menu"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +94,7 @@ export default function Header() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6"
+                className="size-5"
               >
                 <path
                   strokeLinecap="round"
@@ -78,35 +106,38 @@ export default function Header() {
           )}
         </div>
       </div>
+
+      {/* mobile drawer */}
       {open && (
         <div
           ref={menuRef}
-          className="bg-white/20 backdrop-blur-2xl top-[58px] absolute right-0 w-1/2 text-white"
+          className="sm:hidden absolute right-0 top-[72px] w-[75%] bg-white/10 backdrop-blur-2xl border-l border-white/10"
         >
-          <ul className="text-right border text-3xl font-bold h-[calc(100vh-58px)]">
-            <li
-              className="cursor-pointer p-5"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <a href="#About">About</a>
-            </li>
-            <li
-              className="cursor-pointer p-5"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <a href="#Projects">Projects</a>
-            </li>
-            <li
-              className="cursor-pointer p-5"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <a href="#Contacts">Contacts</a>
+          <ul className="min-h-[calc(100vh-72px)] p-5 space-y-3 text-white">
+            {[
+              ["Home", "#About"],
+              ["Projects", "#Projects"],
+              ["Contact", "#Contacts"],
+            ].map(([t, href]) => (
+              <li key={t}>
+                <a
+                  href={href}
+                  className="block rounded-2xl bg-black/30 border border-white/10 px-4 py-4 font-bold text-lg"
+                  onClick={() => setOpen(false)}
+                >
+                  {t}
+                </a>
+              </li>
+            ))}
+
+            <li className="pt-2">
+              <a
+                href="#Contacts"
+                className="block text-center rounded-2xl bg-white/15 border border-white/10 px-4 py-4 font-bold"
+                onClick={() => setOpen(false)}
+              >
+                Let&apos;s Talk
+              </a>
             </li>
           </ul>
         </div>

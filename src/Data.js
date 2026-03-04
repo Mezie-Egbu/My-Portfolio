@@ -23,6 +23,13 @@ const ProjectInfo = [
     hrefLink: "https://mezie-egbu.github.io/Math-App/",
     image: EquationPic,
   },
+  {
+    title: "Commercial and Industrial SCADA System",
+    description:
+      "This Website was developed using react, tailwindcss and the chart.js react library. It's main purpose is to solve any linear equation graphically.",
+    hrefLink: "https://cni.vetra.lapomikenergy.com",
+    image: "cni.png",
+  },
   // {
   //   title: "GSAP website",
   //   description:
